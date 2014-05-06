@@ -1,0 +1,132 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#CCFFCC"
+    android:padding="30dp"
+    android:paddingBottom="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    tools:context=".FullFeaturedTipCalc" >
+
+    <TextView
+        android:id="@+id/originalBillTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/originalBill"
+        android:textSize="@dimen/font_size"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/originalBillEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@+id/originalBillTextView"
+        android:ems="3"
+        android:gravity="center"
+        android:inputType="numberDecimal"
+        android:text="@string/originalBillDefault"
+        android:textSize="@dimen/edit_text_font_size"
+        android:typeface="monospace" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/tipEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:ems="4"
+        android:gravity="center"
+        android:inputType="none"
+        android:maxEms="4"
+        android:maxLength="5"
+        android:minEms="4"
+        android:text="@string/tipDefault"
+        android:textSize="@dimen/edit_text_font_size"
+        android:typeface="monospace" />
+
+    <TextView
+        android:id="@+id/tipTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/originalBillTextView"
+        android:layout_marginRight="20dp"
+        android:layout_toLeftOf="@+id/tipEditText"
+        android:text="@string/tip"
+        android:textSize="@dimen/font_size"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/changeTipTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/originalBillEditText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="@string/changeTip"
+        android:textSize="@dimen/font_size_misc"
+        android:textStyle="bold"
+        android:typeface="normal" />
+
+    <SeekBar
+        android:id="@+id/changeTipSeekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/changeTipTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:max="100"
+        android:progress="15" />
+
+    <EditText
+        android:id="@+id/finalBillEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="35dp"
+        android:ems="5"
+        android:gravity="center"
+        android:inputType="none"
+        android:text="@string/finalBillDefault"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/introductionTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/changeTipSeekBar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:text="@string/introduction"
+        android:textSize="@dimen/font_size_misc"
+        android:textStyle="normal" />
+
+    <CheckBox
+        android:id="@+id/friendlyCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/introductionTextView"
+        android:text="@string/introductionFriendly"
+        android:textSize="@dimen/font_size_misc"
+        android:textStyle="italic" />
+
+    <CheckBox
+        android:id="@+id/opinionCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/introductionTextView"
+        android:layout_toRightOf="@+id/friendlyCheckBox"
+        android:text="@string/introductionOpinion"
+        android:textSize="@dimen/font_size_misc"
+        android:textStyle="italic" />
+
+</RelativeLayout>

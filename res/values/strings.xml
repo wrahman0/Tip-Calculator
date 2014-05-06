@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string name="action_settings">Settings</string>
+    <string name="app_name">Calculator</string>
+    <string name="originalBill">Bill</string>
+    <string name="originalBillDefault">0.0</string>
+    <string name="tip">Tip</string>
+    <string name="tipDefault">0.15</string>
+    <string name="changeTip">Change Tip</string>
+    <string name="finalBill">Final Bill</string>
+    <string name="finalBillDefault">0.0</string>
+    
+    <string name="introduction">Introduction</string>
+    <string name="introductionFriendly">Friendly</string>
+    <string name="introductionSpecials">Specials</string>
+    <string name="introductionOpinion">Opinion</string>
+    
+    <string name="availability">Availability</string>
+    <string name="availabilityBad">Bad</string>
+    <string name="availabilityOk">OK</string>
+    <string name="availabilityGood">Good</string>
+    
+    <string name="chrono">Time Waiting for Service</string>
+    <string name="chronoDefault">0.0</string>
+    <string name="chronoStart">Start</string>
+    <string name="chronoPause">Pause</string>
+    <string name="chronoReset">Reset</string>
+    
+    <string-array name="problemSolving">
+		<item>Problem Solving</item>
+		<item>Bad</item>
+		<item>OK</item>
+		<item>Good</item>
+	</string-array>
+    
+    	
+</resources>
