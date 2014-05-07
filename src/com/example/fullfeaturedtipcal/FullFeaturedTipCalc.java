@@ -43,8 +43,38 @@ public class FullFeaturedTipCalc extends Activity {
 		finalBillET = (EditText) findViewById(R.id.finalBillEditText);
 		
 		billBeforeTipET.addTextChangedListener(billBeforeTipListener);
+		tipAmountET.addTextChangedListener(tipListener);
 		
 	}
+	
+	private TextWatcher tipListener = new TextWatcher (){
+
+		@Override
+		public void afterTextChanged(Editable s) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void beforeTextChanged(CharSequence s, int start, int count,
+				int after) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void onTextChanged(CharSequence s, int start, int before,
+				int count) {
+			// TODO Auto-generated method stub
+			try{
+				tipAmount = Double.parseDouble(s.toString());
+			}catch (NumberFormatException e){
+				tipAmount = 0.0;
+			}
+			updateTipAndFinalBill();
+		}
+		
+	};
 	
 	private TextWatcher billBeforeTipListener = new TextWatcher (){
 
@@ -77,9 +107,11 @@ public class FullFeaturedTipCalc extends Activity {
 	};
 	
 	private void updateTipAndFinalBill(){
-		double tipAmount = Double.parseDouble(tipAmountET.getText().toString());
+		
+//		double tipAmount = Double.parseDouble(tipAmountET.getText().toString());
 		double finalBill = tipAmount*billBeforeTip + billBeforeTip;
 		finalBillET.setText(String.format("%.02f", finalBill));
+		
 	}
 	
 	protected void onSavedInstanceState (Bundle outState){

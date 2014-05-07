@@ -148,26 +148,11 @@
         android:text="@string/finalBillDefault"
         android:textSize="30sp"
         android:textStyle="bold"
-        android:typeface="monospace" />
-
-    <TextView
-        android:id="@+id/timeWaitingTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/introductionTextView"
-        android:layout_below="@+id/problemSolvingSpinner"
-        android:text="@string/chrono"
-        android:textSize="@dimen/font_size_misc" />
-
-    <Chronometer
-        android:id="@+id/timeWaitingChronometer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/finalBillEditText"
-        android:layout_alignTop="@+id/timeWaitingTextView"
-        android:text="Chronometer"
-        android:textSize="@dimen/font_size_misc"
-        android:typeface="serif" />
+        android:typeface="monospace"
+        android:clickable="false" 
+        android:cursorVisible="false" 
+        android:focusable="false" 
+        android:focusableInTouchMode="false" />
 
     <Button
         android:id="@+id/startButton"
@@ -188,13 +173,34 @@
         android:layout_alignLeft="@+id/introductionTextView"
         android:text="@string/chronoPause" />
 
+    <TextView
+        android:id="@+id/timeWaitingTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="165dp"
+        android:text="@string/chrono"
+        android:textSize="@dimen/font_size_misc" />
+
     <Button
         android:id="@+id/resetButton"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/finalBillEditText"
-        android:layout_toRightOf="@+id/timeWaitingTextView"
+        android:layout_toRightOf="@+id/opinionCheckBox"
         android:text="@string/chronoReset" />
+
+    <Chronometer
+        android:id="@+id/timeWaitingChronometer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="150dp"
+        android:text="Chronometer"
+        android:textSize="@dimen/font_size_misc"
+        android:typeface="serif" />
     
 </RelativeLayout>
