@@ -23,9 +23,9 @@
     
     <string name="chrono">Time Waiting for Service</string>
     <string name="chronoDefault">0.0</string>
-    <string name="chronoStart">Start</string>
-    <string name="chronoPause">Pause</string>
-    <string name="chronoReset">Reset</string>
+    <string name="chronoStart">START</string>
+    <string name="chronoPause">PAUSE</string>
+    <string name="chronoReset">RESET</string>
     
     <string-array name="problemSolving">
 		<item>Problem Solving</item>

@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 
 public class FullFeaturedTipCalc extends Activity {
@@ -17,15 +19,28 @@ public class FullFeaturedTipCalc extends Activity {
 	private double tipAmount;
 	private double finalBill;
 	
+	//Internal buff holders
+	private double friendlyBuff = 0.0;
+	private double opinionBuff = 0.0;
+	private double specialsBuff = 0.0;
+	
+	//Internal buff factors
+	private double friendlyFactor = 0.02;
+	private double opinionFactor = 0.04;
+	private double specialsFactor = 0.03;
+	
 	EditText billBeforeTipET;
 	EditText tipAmountET;
 	EditText finalBillET;
 	
-	
+	CheckBox friendly;
+	CheckBox opinion;
+	CheckBox specials;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		setContentView(R.layout.activity_full_featured_tip_calc);
 		
 		if (savedInstanceState == null){
@@ -44,6 +59,72 @@ public class FullFeaturedTipCalc extends Activity {
 		
 		billBeforeTipET.addTextChangedListener(billBeforeTipListener);
 		tipAmountET.addTextChangedListener(tipListener);
+		
+		friendly = (CheckBox) findViewById(R.id.friendlyCheckBox);
+		opinion = (CheckBox) findViewById(R.id.opinionCheckBox);
+		specials = (CheckBox) findViewById(R.id.specialsCheckBox);
+		setUpIntroCheckBoxes();
+		updateTipAndFinalBill();
+		
+	}
+	
+	private void setUpIntroCheckBoxes () {
+		
+		friendly.setOnCheckedChangeListener (new CheckBox.OnCheckedChangeListener(){
+
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView,
+					boolean isChecked) {
+				
+				if (friendly.isChecked()){
+					friendlyBuff = billBeforeTip*friendlyFactor;
+					updateTipAndFinalBill();
+				}else{
+					friendlyBuff = 0.0;
+					updateTipAndFinalBill();
+				}
+				
+			}
+			
+		});
+		
+		opinion.setOnCheckedChangeListener(new CheckBox.OnCheckedChangeListener(){
+
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView,
+					boolean isChecked) {
+				// TODO Auto-generated method stub
+				if (opinion.isChecked()){
+					opinionBuff = billBeforeTip*opinionFactor;
+					updateTipAndFinalBill();
+				}else{
+					opinionBuff = 0.0;
+					updateTipAndFinalBill();
+				}
+				
+				
+			}
+			
+		});
+		
+		specials.setOnCheckedChangeListener(new CheckBox.OnCheckedChangeListener(){
+
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView,
+					boolean isChecked) {
+				// TODO Auto-generated method stub
+				if (specials.isChecked()){
+					specialsBuff = billBeforeTip*specialsFactor;
+					updateTipAndFinalBill();
+				}else{
+					specialsBuff = 0.0;
+					updateTipAndFinalBill();
+				}
+				
+			}
+			
+		});
+		
 		
 	}
 	
@@ -108,9 +189,9 @@ public class FullFeaturedTipCalc extends Activity {
 	
 	private void updateTipAndFinalBill(){
 		
-//		double tipAmount = Double.parseDouble(tipAmountET.getText().toString());
-		double finalBill = tipAmount*billBeforeTip + billBeforeTip;
-		finalBillET.setText(String.format("%.02f", finalBill));
+		double finalBill = tipAmount*billBeforeTip + billBeforeTip + friendlyBuff + opinionBuff + specialsBuff;
+		//TODO:Append '$' sign
+		finalBillET.setText('$' + String.format("%.02f", finalBill));
 		
 	}
 	

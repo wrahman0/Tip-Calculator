@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#CCFFCC"
+    android:background="#FFFFFF"
     android:padding="30dp"
     android:paddingBottom="15dp"
     android:paddingLeft="0dp"
@@ -26,9 +26,11 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_toRightOf="@+id/originalBillTextView"
-        android:ems="3"
+        android:ems="4"
         android:gravity="center"
         android:inputType="numberDecimal"
+        android:maxEms="4"
+        android:minEms="4"
         android:text="@string/originalBillDefault"
         android:textSize="@dimen/edit_text_font_size"
         android:typeface="monospace" >
@@ -71,7 +73,7 @@
         android:layout_marginTop="20dp"
         android:text="@string/changeTip"
         android:textSize="@dimen/font_size_misc"
-        android:textStyle="normal"
+        android:textStyle="bold"
         android:typeface="normal" />
 
     <SeekBar
@@ -93,7 +95,7 @@
         android:layout_marginTop="15dp"
         android:text="@string/introduction"
         android:textSize="@dimen/font_size_misc"
-        android:textStyle="normal" />
+        android:textStyle="bold" />
 
     <CheckBox
         android:id="@+id/friendlyCheckBox"
@@ -116,25 +118,6 @@
         android:textSize="@dimen/font_size_misc"
         android:textStyle="italic" />
 
-    <CheckBox
-        android:id="@+id/opinionCheckBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/friendlyCheckBox"
-        android:layout_alignBottom="@+id/friendlyCheckBox"
-        android:layout_alignRight="@+id/tipTextView"
-        android:text="@string/introductionOpinion"
-        android:textSize="@dimen/font_size_misc"
-        android:textStyle="italic" />
-
-    <Spinner
-        android:id="@+id/problemSolvingSpinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/friendlyCheckBox"
-        android:entries="@array/problemSolving" />
-
     <EditText
         android:id="@+id/finalBillEditText"
         android:layout_width="wrap_content"
@@ -155,15 +138,6 @@
         android:focusableInTouchMode="false" />
 
     <Button
-        android:id="@+id/startButton"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/finalBillEditText"
-        android:layout_alignRight="@+id/friendlyCheckBox"
-        android:text="@string/chronoStart" />
-
-    <Button
         android:id="@+id/pauseButton"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
@@ -179,18 +153,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="165dp"
+        android:layout_marginBottom="180dp"
         android:text="@string/chrono"
         android:textSize="@dimen/font_size_misc" />
-
-    <Button
-        android:id="@+id/resetButton"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/finalBillEditText"
-        android:layout_toRightOf="@+id/opinionCheckBox"
-        android:text="@string/chronoReset" />
 
     <Chronometer
         android:id="@+id/timeWaitingChronometer"
@@ -198,9 +163,37 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="150dp"
+        android:layout_marginBottom="160dp"
         android:text="Chronometer"
         android:textSize="@dimen/font_size_misc"
         android:typeface="serif" />
+
+    <CheckBox
+        android:id="@+id/opinionCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/introductionTextView"
+        android:layout_alignTop="@+id/friendlyCheckBox"
+        android:text="@string/introductionOpinion"
+        android:textSize="@dimen/font_size_misc"
+        android:textStyle="italic" />
+
+    <Button
+        android:id="@+id/startButton"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/finalBillEditText"
+        android:layout_toLeftOf="@+id/pauseButton"
+        android:text="@string/chronoStart" />
+
+    <Button
+        android:id="@+id/resetButton"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/finalBillEditText"
+        android:layout_toRightOf="@+id/pauseButton"
+        android:text="@string/chronoReset" />
     
 </RelativeLayout>
