@@ -26,8 +26,8 @@ public class FullFeaturedTipCalc extends Activity {
 	
 	//Internal buff factors
 	private double friendlyFactor = 0.02;
-	private double opinionFactor = 0.04;
-	private double specialsFactor = 0.03;
+	private double opinionFactor = 0.03;
+	private double specialsFactor = 0.02;
 	
 	EditText billBeforeTipET;
 	EditText tipAmountET;
