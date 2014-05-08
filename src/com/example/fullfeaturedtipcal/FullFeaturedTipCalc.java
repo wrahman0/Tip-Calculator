@@ -70,13 +70,17 @@ public class FullFeaturedTipCalc extends Activity {
 		setContentView(R.layout.activity_full_featured_tip_calc);
 		
 		if (savedInstanceState == null){
+			
 			billBeforeTip = 0.0;
 			tipAmount = 0.15;
 			finalBill = 0.0;
+			
 		}else{
+			
 			billBeforeTip = savedInstanceState.getDouble(BILL_WITHOUT_TIP);
 			tipAmount = savedInstanceState.getDouble(CURRENT_TIP);
 			finalBill = savedInstanceState.getDouble(TOTAL_BILL);
+			
 		}
 		
 		//Getting the edittexts
@@ -131,21 +135,22 @@ public class FullFeaturedTipCalc extends Activity {
 				int stoppedMilliSeconds = 0;
 				
 				// [(hours), minutes, seconds]
-				String timeHoldingArray[] = timeText.split(":"); 
+				String timeHoldingArray[] = timeText.split(":");
 				
 				if (timeHoldingArray.length == 2){ // Only the minutes and seconds are present
 					
 					//Get the amount of milliseconds the you have been stopped for
-					stoppedMilliSeconds = Integer.parseInt(timeHoldingArray[0]) * 1000 + Integer.parseInt(timeHoldingArray[1]) * 60 * 1000; 
+					stoppedMilliSeconds = Integer.parseInt(timeHoldingArray[0]) * 60 * 1000 + Integer.parseInt(timeHoldingArray[1]) * 1000; 
 					
 					
 				}else if (timeHoldingArray.length == 3){ // Holding Hour Value too
 					
-					stoppedMilliSeconds = Integer.parseInt(timeHoldingArray[0]) * 1000 + Integer.parseInt(timeHoldingArray[1]) * 60 * 1000 + Integer.parseInt(timeHoldingArray[1]) * 60 * 60 * 1000; 
+					stoppedMilliSeconds = Integer.parseInt(timeHoldingArray[0]) * 60 * 60 * 1000 + Integer.parseInt(timeHoldingArray[1]) * 60 * 1000 + Integer.parseInt(timeHoldingArray[1]) * 1000; 
 					
 				}
 				
 				//TODO:Possible Issue
+				System.err.println ("Time since pause button was pressed " + stoppedMilliSeconds);
 				chronoTimer.setBase(SystemClock.elapsedRealtime() - stoppedMilliSeconds);
 				
 				chronoTimer.start();
@@ -166,7 +171,7 @@ public class FullFeaturedTipCalc extends Activity {
 				//TODO: Determine whether exceeding the allowable time
 				secondsWaited = SystemClock.elapsedRealtime() - chronoTimer.getBase();
 				secondsWaited *= 0.001;
-				System.err.println (secondsWaited);
+				System.err.println ("Seconds Waited for Service: " + secondsWaited);
 			}
 			
 		});
@@ -192,6 +197,7 @@ public class FullFeaturedTipCalc extends Activity {
 		@Override
 		public void onProgressChanged(SeekBar seekBar, int progress,
 				boolean fromUser) {
+
 			// TODO Auto-generated method stub
 			tipAmount = tipSeeker.getProgress() * 0.01;
 			tipAmountET.setText (String.format("%.02f", tipAmount));
@@ -342,17 +348,17 @@ public class FullFeaturedTipCalc extends Activity {
 			finalBill += billBeforeTip*timeFactor;
 		}
 		
-		
-		//TODO:Append '$' sign
 		finalBillET.setText('$' + String.format("%.02f", finalBill));
 		
 	}
 	
 	protected void onSavedInstanceState (Bundle outState){
 		super.onSaveInstanceState(outState);
+		
 		outState.putDouble(TOTAL_BILL, finalBill);
 		outState.putDouble(BILL_WITHOUT_TIP, billBeforeTip);
 		outState.putDouble(CURRENT_TIP, tipAmount);
+		
 	}
 	
 	@Override
