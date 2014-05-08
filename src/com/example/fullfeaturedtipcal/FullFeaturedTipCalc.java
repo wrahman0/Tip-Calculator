@@ -29,6 +29,7 @@ public class FullFeaturedTipCalc extends Activity {
 	private double friendlyBuff = 0.0;
 	private double opinionBuff = 0.0;
 	private double specialsBuff = 0.0;
+	private long milliSecondsWaited = 0;
 	
 	//Internal buff factors
 	private double friendlyFactor = 0.02;
@@ -114,6 +115,7 @@ public class FullFeaturedTipCalc extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
+//				chronoTimer.setBase(SystemClock.elapsedRealtime());
 				chronoTimer.start();
 			}
 			
@@ -125,6 +127,9 @@ public class FullFeaturedTipCalc extends Activity {
 			public void onClick(View arg0) {
 				chronoTimer.stop();
 				//TODO: Determine whether exceeding the allowable time
+				milliSecondsWaited = SystemClock.elapsedRealtime() - chronoTimer.getBase();
+				milliSecondsWaited *= 0.001;
+				System.err.println (milliSecondsWaited);
 			}
 			
 		});
@@ -135,6 +140,8 @@ public class FullFeaturedTipCalc extends Activity {
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				chronoTimer.setBase(SystemClock.elapsedRealtime());
+				chronoTimer.stop();
+				milliSecondsWaited = 0;
 				
 			}
 			
