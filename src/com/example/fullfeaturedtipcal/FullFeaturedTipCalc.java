@@ -1,11 +1,15 @@
 package com.example.fullfeaturedtipcal;
 
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.app.Activity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
+import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.Chronometer;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.SeekBar;
@@ -41,6 +45,11 @@ public class FullFeaturedTipCalc extends Activity {
 	
 	SeekBar tipSeeker;
 	
+	Chronometer chronoTimer;
+	
+	Button chronoStart;
+	Button chronoPause;
+	Button chronoReset;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -81,9 +90,56 @@ public class FullFeaturedTipCalc extends Activity {
 		//Adding listeners
 		tipSeeker.setOnSeekBarChangeListener(tipSeekBarListener);
 		
+		//Getting the chronometer
+		chronoTimer = (Chronometer) findViewById (R.id.timeWaitingChronometer);
+		
+		//Getting the chrono buttons
+		chronoStart = (Button) findViewById (R.id.startButton);
+		chronoPause = (Button) findViewById (R.id.pauseButton);
+		chronoReset = (Button) findViewById (R.id.resetButton);
+		
+		//Adding the button listeners
+		addChronoButtonListeners();
+		
 		//Initial calculations
 		updateTipAndFinalBill();
 		
+		
+	}
+	
+	private void addChronoButtonListeners(){
+
+		chronoStart.setOnClickListener(new Button.OnClickListener(){
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				chronoTimer.start();
+			}
+			
+		});
+		
+		chronoPause.setOnClickListener(new Button.OnClickListener(){
+
+			@Override
+			public void onClick(View arg0) {
+				chronoTimer.stop();
+				//TODO: Determine whether exceeding the allowable time
+			}
+			
+		});
+
+		chronoReset.setOnClickListener(new Button.OnClickListener(){
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				chronoTimer.setBase(SystemClock.elapsedRealtime());
+				
+			}
+			
+		});
+
 		
 	}
 	
