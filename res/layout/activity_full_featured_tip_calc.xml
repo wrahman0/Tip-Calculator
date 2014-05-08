@@ -34,8 +34,6 @@
         android:text="@string/originalBillDefault"
         android:textSize="@dimen/edit_text_font_size"
         android:typeface="monospace" >
-
-        <requestFocus />
     </EditText>
 
     <EditText

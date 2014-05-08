@@ -6,7 +6,10 @@ import android.app.Activity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Chronometer;
@@ -56,6 +59,13 @@ public class FullFeaturedTipCalc extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		//TODO:Remove keyboard when done
+		
+		// If the Android version is lower than Jellybean, use this call to hide
+        // the status bar.
+		requestWindowFeature(Window.FEATURE_NO_TITLE);// hide statusbar of Android
+	    getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+	    WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		
 		setContentView(R.layout.activity_full_featured_tip_calc);
 		
@@ -76,6 +86,7 @@ public class FullFeaturedTipCalc extends Activity {
 		
 		//Adding listeners
 		billBeforeTipET.addTextChangedListener(billBeforeTipListener);
+		billBeforeTipET.setSelectAllOnFocus(true);
 		tipAmountET.addTextChangedListener(tipListener);
 		
 		//Getting the checkboxes
@@ -134,8 +145,11 @@ public class FullFeaturedTipCalc extends Activity {
 					
 				}
 				
+				//TODO:Possible Issue
 				chronoTimer.setBase(SystemClock.elapsedRealtime() - stoppedMilliSeconds);
+				
 				chronoTimer.start();
+				
 				secondsWaited = Long.parseLong(timeHoldingArray[0]) + Long.parseLong(timeHoldingArray[1]) * 60 + Long.parseLong(timeHoldingArray[0]) * 60 * 60;
 				
 				updateTipAndFinalBill();
@@ -323,9 +337,9 @@ public class FullFeaturedTipCalc extends Activity {
 		double finalBill = tipAmount*billBeforeTip + billBeforeTip + friendlyBuff + opinionBuff + specialsBuff;
 		//Calculating Time Bonus:
 		if (secondsWaited > 600){
-			finalBill -= tipAmount*timeFactor;
+			finalBill -= billBeforeTip*timeFactor;
 		}else{
-			finalBill += tipAmount*timeFactor;
+			finalBill += billBeforeTip*timeFactor;
 		}
 		
 		
