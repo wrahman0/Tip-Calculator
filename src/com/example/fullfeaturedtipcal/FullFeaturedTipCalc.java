@@ -8,6 +8,8 @@ import android.view.Menu;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
 
 public class FullFeaturedTipCalc extends Activity {
 	
@@ -37,6 +39,9 @@ public class FullFeaturedTipCalc extends Activity {
 	CheckBox opinion;
 	CheckBox specials;
 	
+	SeekBar tipSeeker;
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -53,21 +58,61 @@ public class FullFeaturedTipCalc extends Activity {
 			finalBill = savedInstanceState.getDouble(TOTAL_BILL);
 		}
 		
+		//Getting the edittexts
 		billBeforeTipET = (EditText) findViewById(R.id.originalBillEditText);
 		tipAmountET = (EditText) findViewById(R.id.tipEditText);
 		finalBillET = (EditText) findViewById(R.id.finalBillEditText);
 		
+		//Adding listeners
 		billBeforeTipET.addTextChangedListener(billBeforeTipListener);
 		tipAmountET.addTextChangedListener(tipListener);
 		
+		//Getting the checkboxes
 		friendly = (CheckBox) findViewById(R.id.friendlyCheckBox);
 		opinion = (CheckBox) findViewById(R.id.opinionCheckBox);
 		specials = (CheckBox) findViewById(R.id.specialsCheckBox);
+		
+		//Adding listeners
 		setUpIntroCheckBoxes();
+
+		//Getting the seekbar
+		tipSeeker = (SeekBar) findViewById (R.id.changeTipSeekBar);
+		
+		//Adding listeners
+		tipSeeker.setOnSeekBarChangeListener(tipSeekBarListener);
+		
+		//Initial calculations
 		updateTipAndFinalBill();
+		
 		
 	}
 	
+	private OnSeekBarChangeListener tipSeekBarListener = new OnSeekBarChangeListener(){
+
+		@Override
+		public void onProgressChanged(SeekBar seekBar, int progress,
+				boolean fromUser) {
+			// TODO Auto-generated method stub
+			tipAmount = tipSeeker.getProgress() * 0.01;
+			tipAmountET.setText (String.format("%.02f", tipAmount));
+			updateTipAndFinalBill();
+			
+		}
+
+		@Override
+		public void onStartTrackingTouch(SeekBar seekBar) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void onStopTrackingTouch(SeekBar seekBar) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	};
+
 	private void setUpIntroCheckBoxes () {
 		
 		friendly.setOnCheckedChangeListener (new CheckBox.OnCheckedChangeListener(){
