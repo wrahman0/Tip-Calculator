@@ -133,30 +133,19 @@ public class FullFeaturedTipCalc extends Activity {
 				
 				String timeText = chronoTimer.getText().toString();
 				int stoppedMilliSeconds = 0;
+				String timeHoldingArray[] = timeText.split(":"); // [(hours), minutes, seconds]
 				
-				// [(hours), minutes, seconds]
-				String timeHoldingArray[] = timeText.split(":");
-				
-				if (timeHoldingArray.length == 2){ // Only the minutes and seconds are present
-					
+				if (timeHoldingArray.length == 2){ 
+					// Only the minutes and seconds are present
 					//Get the amount of milliseconds the you have been stopped for
-					stoppedMilliSeconds = Integer.parseInt(timeHoldingArray[0]) * 60 * 1000 + Integer.parseInt(timeHoldingArray[1]) * 1000; 
-					
-					
-				}else if (timeHoldingArray.length == 3){ // Holding Hour Value too
-					
-					stoppedMilliSeconds = Integer.parseInt(timeHoldingArray[0]) * 60 * 60 * 1000 + Integer.parseInt(timeHoldingArray[1]) * 60 * 1000 + Integer.parseInt(timeHoldingArray[1]) * 1000; 
-					
+					stoppedMilliSeconds = Integer.parseInt(timeHoldingArray[0]) * 60 * 1000 + Integer.parseInt(timeHoldingArray[1]) * 1000;
+				}else if (timeHoldingArray.length == 3){ // Holding Hour Value too	
+					stoppedMilliSeconds = Integer.parseInt(timeHoldingArray[0]) * 60 * 60 * 1000 + Integer.parseInt(timeHoldingArray[1]) * 60 * 1000 + Integer.parseInt(timeHoldingArray[1]) * 1000;
 				}
 				
-				//TODO:Possible Issue
-				System.err.println ("Time since pause button was pressed " + stoppedMilliSeconds);
 				chronoTimer.setBase(SystemClock.elapsedRealtime() - stoppedMilliSeconds);
-				
 				chronoTimer.start();
-				
 				secondsWaited = Long.parseLong(timeHoldingArray[0]) + Long.parseLong(timeHoldingArray[1]) * 60 + Long.parseLong(timeHoldingArray[0]) * 60 * 60;
-				
 				updateTipAndFinalBill();
 				
 			}
